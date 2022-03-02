@@ -7,6 +7,7 @@ namespace laby1
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+            int xd = 0 => true;
         }
     }
 }
