@@ -1,5 +1,6 @@
 namespace laby1
 {
+
     partial class Program
     {
         public class Money
@@ -50,6 +51,21 @@ namespace laby1
             public static bool operator <(Money a, Money b)
             {
                 return a.Value < b.Value;
+            }
+
+            public static implicit operator decimal(Money money)
+            {
+                return money.Value;
+            }
+
+            public static explicit operator double(Money money)
+            {
+                return (double)money.Value;
+            }
+
+            public static implicit operator float(Money money)
+            {
+                return (float)money.Value;
             }
         }
     }
