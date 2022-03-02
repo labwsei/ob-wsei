@@ -18,16 +18,16 @@ namespace laby1
 
                 if (value < 0)
                 {
-                    try
-                    {
-                        return new Money(value, currency);
-                    }
-                    catch (System.Exception ex)
-                    {
-                        throw new System.Exception("Class instace creation exception")
-                    }
+                    return new Money(value, currency);
                 }
-                return null;
+                else
+                {
+                    throw new System.Exception("Class instace creation exception");
+                }
+            }
+            public static Money? ParseValue(string value, Currency currency)
+            {
+                return int.Parse(value) < 0 ? null : new Money(int.Parse(value), currency);
             }
             public static Money? OfWithException(decimal value, Currency currency)
             {
