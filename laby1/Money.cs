@@ -4,9 +4,12 @@ namespace laby1
     {
         public class Money
         {
-            private readonly decimal _value;
+            private decimal _value;
 
             private readonly Currency _currency;
+
+            public decimal Value { get => _value; private set => _value = value; }
+            public Currency Currency { get => _currency; }
 
             private Money(decimal value, Currency currency)
             {
@@ -32,6 +35,21 @@ namespace laby1
             public static Money? OfWithException(decimal value, Currency currency)
             {
                 return value < 0 ? null : new Money(value, currency);
+            }
+
+            public static Money operator *(Money money, decimal factor)
+            {
+                return new Money(money.Value * factor, money.Currency);
+            }
+
+            public static bool operator >(Money a, Money b)
+            {
+                return a.Value > b.Value;
+            }
+
+            public static bool operator <(Money a, Money b)
+            {
+                return a.Value < b.Value;
             }
         }
     }
