@@ -3,7 +3,7 @@ namespace laby1
 
   partial class Program
   {
-    public class Money
+    public class Money : System.IEquatable<Money>, System.IComparable<Money>
     {
       private decimal _value;
 
@@ -16,7 +16,6 @@ namespace laby1
 
       public decimal Value { get => _value; private set => _value = value; }
       public Currency Currency { get => _currency; }
-
       private Money(decimal value, Currency currency)
       {
         _value = value;
@@ -98,24 +97,33 @@ namespace laby1
         return (float)money.Value;
       }
 
+      public bool Equals(Money other)
+      {
+        if (ReferenceEquals(null, other)) return false;
+        if (ReferenceEquals(this, other)) return true;
+        return _value == other._value && _currency.Equals(other._currency);
+      }
+
       public override bool Equals(object obj)
       {
-        if (ReferenceEquals(this, obj))
-        {
-          return true;
-        }
-
-        if (ReferenceEquals(obj, null))
-        {
-          return false;
-        }
-
-        throw new System.NotImplementedException();
+        if (ReferenceEquals(null, obj)) return false;
+        if (ReferenceEquals(this, obj)) return true;
+        if (obj.GetType() != this.GetType()) return false;
+        return Equals((Money)obj);
       }
 
       public override int GetHashCode()
       {
-        throw new System.NotImplementedException();
+        return System.HashCode.Combine(_value, _currency);
+      }
+
+      public int CompareTo(Money other)
+      {
+        if (ReferenceEquals(this, other)) return 0;
+        if (ReferenceEquals(null, other)) return 1;
+        var currencyComparison = _currency.CompareTo(other._currency);
+        if (currencyComparison != 0) return currencyComparison;
+        return _value.CompareTo(other._value);
       }
     }
   }

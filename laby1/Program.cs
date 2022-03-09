@@ -22,6 +22,38 @@ namespace laby1
       Console.WriteLine(tank1);
 
       Console.WriteLine(money.ToString());
+
+
+      Money[] bank =
+{
+    Money.Of(3, Currency.PLN),
+    Money.Of(3m, Currency.USD),
+    Money.Of(1m, Currency.PLN),
+    Money.Of(4m, Currency.USD),
+};
+
+      Array.Sort(bank);
+      for (int i = 0; i < bank.Length; i++)
+      {
+        Console.WriteLine(bank[i]);
+      }
+
+
+
+      Student[] students =
+{
+    new Student("Bingus", "Dingus", 6),
+     new Student("Amogus", "Zingus", 10),
+       new Student("Śmingus", "Roingus", 2.5m),
+    new Student("Lingus", "Mingus", 25),
+    new Student("Gingus", "Kongus", 12),
+};
+
+      Array.Sort(students);
+      for (int i = 0; i < students.Length; i++)
+      {
+        Console.WriteLine(students[i]);
+      }
     }
   }
 }
