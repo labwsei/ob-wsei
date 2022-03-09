@@ -9,6 +9,11 @@ namespace laby1
 
       private readonly Currency _currency;
 
+      public override string ToString()
+      {
+        return $"{_value} {_currency}";
+      }
+
       public decimal Value { get => _value; private set => _value = value; }
       public Currency Currency { get => _currency; }
 
@@ -105,6 +110,11 @@ namespace laby1
           return false;
         }
 
+        throw new System.NotImplementedException();
+      }
+
+      public override int GetHashCode()
+      {
         throw new System.NotImplementedException();
       }
     }

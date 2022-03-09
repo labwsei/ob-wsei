@@ -18,8 +18,10 @@ namespace laby1
       tank1.refuel(30);
       tank2.refuel(25);
       tank2.refuel(tank1, 10);
-      Console.WriteLine(tank2.Level);
-      Console.WriteLine(tank1.Level);
+      Console.WriteLine(tank2);
+      Console.WriteLine(tank1);
+
+      Console.WriteLine(money.ToString());
     }
   }
 }

@@ -24,6 +24,11 @@ namespace laby1
         _level = value;
       }
     }
+
+    public override string ToString()
+    {
+      return $"Tank: Capacity = {Capacity}, Level = {_level}";
+    }
     public bool refuel(int amount)
     {
       if (amount < 0)
