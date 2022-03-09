@@ -44,7 +44,7 @@ namespace laby1
       {
         return false;
       }
-      if (_level - amount > 0)
+      if (_level - amount < 0)
       {
         return false;
       }

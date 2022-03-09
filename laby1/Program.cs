@@ -19,6 +19,7 @@ namespace laby1
       tank2.refuel(25);
       tank2.refuel(tank1, 10);
       Console.WriteLine(tank2.Level);
+      Console.WriteLine(tank1.Level);
     }
   }
 }
