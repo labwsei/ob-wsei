@@ -35,7 +35,7 @@ namespace laby1
       Array.Sort(bank);
       for (int i = 0; i < bank.Length; i++)
       {
-        Console.WriteLine(bank[i]);
+        Console.WriteLine(bank[i].ToString());
       }
 
 
@@ -43,8 +43,8 @@ namespace laby1
       Student[] students =
 {
     new Student("Bingus", "Dingus", 6),
-     new Student("Amogus", "Zingus", 10),
-       new Student("Śmingus", "Roingus", 2.5m),
+    new Student("Amogus", "Zingus", 10),
+    new Student("Śmingus", "Roingus", 2.5m),
     new Student("Lingus", "Mingus", 25),
     new Student("Gingus", "Kongus", 12),
 };
