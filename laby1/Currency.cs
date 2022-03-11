@@ -1,12 +1,9 @@
 namespace laby1
 {
-    partial class Program
+    public enum Currency
     {
-        public enum Currency
-        {
-            PLN = 1,
-            USD = 2,
-            EUR = 3
-        }
+        PLN = 1,
+        USD = 2,
+        EUR = 3
     }
 }

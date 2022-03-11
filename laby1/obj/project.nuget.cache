@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "wMTStVcJWcmYFctJz4xLc/VcRwGIzbA/r4UoxgKJKHr3ETBZjt8I55eRUWFalpw5Na0ILs7Ri+bonj/mkxc4UA==",
+  "dgSpecHash": "8m1cZHc8IiOPvojV7LHNFmUKLGniCKZLZaazlJXixGRR7EkA4imqMaNwtpgqt5d3x7Y2INuBJtdGoWJUsl+O5g==",
   "success": true,
-  "projectFilePath": "D:\\Users\\jan.slazynski\\Documents\\laby\\laby1\\laby1.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\Jan\\Desktop\\KOD\\C#\\WSEI\\ob-wsei\\laby1\\laby1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Jan\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.13\\microsoft.netcore.app.host.win-x64.5.0.13.nupkg.sha512"
+  ],
   "logs": []
 }
