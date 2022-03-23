@@ -138,5 +138,6 @@ public class Exercise3
         {
 
         }
+        return arraum;
     }
 }
