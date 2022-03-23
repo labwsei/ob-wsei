@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+
+
 class App
 {
+
     public static void Main(string[] args)
     {
         //UWAGA!!! Nie usuwaj poniższego wiersza!!! :D
@@ -15,6 +19,12 @@ class App
         Console.WriteLine(drum.Play());
 
         Console.WriteLine(new Musician<Keyboard>().ToString());
+
+
+        int[] arr = { 2, 3, 4, 6 };
+        var tuple = Exercise2.GetTuple2<int>(arr);
+        Console.WriteLine(tuple.Item1);
+        Console.WriteLine(tuple.Item2);
     }
 }
 
@@ -84,10 +94,10 @@ public class Exercise2
     //Zmień poniższą metodę, aby zwracała krotkę z polami typu string, int i bool oraz wartościami "Karol", 12 i true
     public static object getTuple1()
     {
-        throw new NotImplementedException();
+        return ValueTuple.Create("Karol", 12, true);
     }
 
-    //Zdefiniuj poniższą metodę, aby zwracała krotkę o dwóch polach
+    //Zdefiniuj poniższą ???? metodę, aby zwracała krotkę o dwóch polach
     //firstAndLast: z tablicą dwuelementową z pierwszym i ostatnim elementem tablicy input
     //isSame: z wartością logiczną określająca równość obu elementów
     //dla pustej tablicy należy zwrócić krotkę z pustą tablica i wartościa false
@@ -98,10 +108,14 @@ public class Exercise2
     //var tuple = GetTuple2<int>(arr);
     //tuple.firstAndLast    ==> {2, 6}
     //tuple.isSame          ==> false
-    // public static ValueTuple<T[], bool> GetTuple2<T>(T[] arr)
-    // {
-    //     throw new NotImplementedException();
-    // }
+    public static ValueTuple<T[], bool> GetTuple2<T>(T[] input)
+    {
+        T[] firstAndLast = new T[2];
+        firstAndLast[0] = input[0];
+        firstAndLast[1] = input[^1];
+        var isSame = firstAndLast[0].Equals(firstAndLast[1]);
+        return (firstAndLast, isSame);
+    }
 }
 
 //Cwiczenie 3
@@ -119,6 +133,10 @@ public class Exercise3
     //W obu tablicach moga pojawić się wartości null, które też muszą być zliczane
     public static (T, int)[] countElements<T>(T[] arr, params T[] elements)
     {
-        throw new NotImplementedException();
+        var arraum = new (T, int)[elements.Length];
+        for (int i = 0; i < arr.Length; i++)
+        {
+
+        }
     }
 }
