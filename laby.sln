@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "laby1", "laby1\laby1.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "laby2", "laby2\laby2.csproj", "{8EAB4859-C84A-46D7-A473-8D4D964DC3AA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "laby4", "laby4\laby4.csproj", "{66D86416-2DC4-42AB-8495-FEC7AFBABB36}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,5 +46,17 @@ Global
 		{8EAB4859-C84A-46D7-A473-8D4D964DC3AA}.Release|x64.Build.0 = Release|Any CPU
 		{8EAB4859-C84A-46D7-A473-8D4D964DC3AA}.Release|x86.ActiveCfg = Release|Any CPU
 		{8EAB4859-C84A-46D7-A473-8D4D964DC3AA}.Release|x86.Build.0 = Release|Any CPU
+		{66D86416-2DC4-42AB-8495-FEC7AFBABB36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66D86416-2DC4-42AB-8495-FEC7AFBABB36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66D86416-2DC4-42AB-8495-FEC7AFBABB36}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{66D86416-2DC4-42AB-8495-FEC7AFBABB36}.Debug|x64.Build.0 = Debug|Any CPU
+		{66D86416-2DC4-42AB-8495-FEC7AFBABB36}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{66D86416-2DC4-42AB-8495-FEC7AFBABB36}.Debug|x86.Build.0 = Debug|Any CPU
+		{66D86416-2DC4-42AB-8495-FEC7AFBABB36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66D86416-2DC4-42AB-8495-FEC7AFBABB36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66D86416-2DC4-42AB-8495-FEC7AFBABB36}.Release|x64.ActiveCfg = Release|Any CPU
+		{66D86416-2DC4-42AB-8495-FEC7AFBABB36}.Release|x64.Build.0 = Release|Any CPU
+		{66D86416-2DC4-42AB-8495-FEC7AFBABB36}.Release|x86.ActiveCfg = Release|Any CPU
+		{66D86416-2DC4-42AB-8495-FEC7AFBABB36}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
