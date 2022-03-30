@@ -11,6 +11,13 @@ class App
     Direction4 dir = Direction4.UP;
     var point2 = Exercise1.NextPoint(dir, point1, screen);
     Console.WriteLine(point2);
+    int[,] screen2 =
+  {
+        {1, 0, 0},
+        {0, 0, 0},
+        {0, 0, 0}
+    };
+    Console.WriteLine(Exercise2.DirectionTo(screen2, (1, 1), 1));
   }
 }
 
@@ -103,7 +110,54 @@ class Exercise2
 
   public static Direction8 DirectionTo(int[,] screen, (int, int) point, int value)
   {
-    throw new NotImplementedException();
+
+    int px = point.Item1;
+    int py = point.Item2;
+    for (var i = 0; i < screen.GetLength(0); i++)
+    {
+      for (var j = 0; j < screen.GetLength(1); j++)
+      {
+        if (screen[i, j] == value)
+        {
+          if (j < px && i == py)
+          {
+            return Direction8.LEFT;
+          }
+          if (j > px && i == py)
+          {
+            return Direction8.RIGHT;
+          }
+          if (j == px && i > py)
+          {
+            return Direction8.UP;
+          }
+          if (j == px && i == py)
+          {
+            return Direction8.DOWN;
+          }
+          if (j < px && i > py)
+          {
+            return Direction8.DOWN_LEFT;
+          }
+          if (j > px && i > py)
+          {
+            return Direction8.DOWN_RIGHT;
+          }
+
+          if (j < px && i < py)
+          {
+            return Direction8.UP_LEFT;
+          }
+          if (j > px && i < py)
+          {
+            return Direction8.UP_RIGHT;
+          }
+          break;
+        }
+      }
+    }
+    return Direction8.UP;
+
   }
 }
 
