@@ -18,6 +18,28 @@ class App
         {0, 0, 0}
     };
     Console.WriteLine(Exercise2.DirectionTo(screen2, (1, 1), 1));
+
+    Car[] _cars = new Car[]
+  {
+    new Car(),
+    new Car(Model: "Fiat", true),
+    new Car(),
+    new Car(Power: 100),
+    new Car(Model: "Fiat", true),
+    new Car(Power: 125),
+    new Car()
+  };
+    Console.WriteLine(Exercise3.CarCounter(_cars));
+
+    Student[] students = {
+ new Student("Kowal","Adam", 'A'),
+ new Student("Nowak","Ewa", 'A')
+};
+    Exercise4.AssignStudentId(students);
+    foreach (var item in students)
+    {
+      Console.WriteLine(item);
+    }
   }
 }
 
@@ -182,7 +204,11 @@ class Exercise3
 {
   public static int CarCounter(Car[] cars)
   {
-    throw new NotImplementedException();
+    foreach (var car in cars)
+    {
+      Console.WriteLine(car);
+    }
+    return 0;
   }
 }
 
@@ -204,6 +230,33 @@ class Exercise4
 {
   public static void AssignStudentId(Student[] students)
   {
+    int[] groupCounter = new int[] { 0, 0, 0 };
+    int counter = 0;
+    foreach (var student in students)
+    {
+      string nmbr = student.Group.ToString();
+      switch (student.Group)
+      {
+        case 'A':
+          groupCounter[0]++;
+          nmbr += string.Format("{0:000}", groupCounter[0]);
 
+          break;
+        case 'B':
+          groupCounter[1]++;
+          nmbr += string.Format("{0:000}", groupCounter[1]);
+
+          break;
+        case 'C':
+          groupCounter[2]++;
+          nmbr += string.Format("{0:000}", groupCounter[2]);
+
+          break;
+      }
+      students[counter] = new Student(student.LastName, student.FirstName, student.Group, nmbr);
+
+      Console.WriteLine($"{student.LastName} {student.FirstName} '{student.Group}' - '{nmbr}'");
+      counter++;
+    }
   }
 }
