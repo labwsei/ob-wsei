@@ -192,39 +192,47 @@ namespace laby2
         //zwróć delegata typu operation, który dodaje oba argumenty 
         public static operation AddOperation()
         {
-            //usuń zgłoszenie wyjątku i wpisz rozwiązanie
-            throw new NotImplementedException();
+            return delegate (double first, double second)
+            {
+                return first + second;
+            };
         }
 
         //Zadanie 3
         //wywołaj przekazanego delegata op z parametrami a i b, a wynik delegata zwróć jako wartość metody Calculate
         public static double Calculate(operation op, double a, double b)
         {
-            //usuń zgłoszenie wyjątku i wpisz rozwiązanie
-            throw new NotImplementedException();
+            Func<double> value = () => op.Invoke(a, b);
+            return value();
+
         }
 
         //Zadanie 4
         //Zwróć wartość delegata typu Func, który zwraca powtórzony łańcuch (pierwszy argument) n razy (drugi argument) 
         public static Func<string, int, string> Repeat()
         {
-            //usuń zgłoszenie wyjątku i wpisz rozwiązanie
-            throw new NotImplementedException();
+            return delegate (string a, int b)
+            {
+                string str = "";
+                for (var i = 0; i < b; i++)
+                {
+                    str += a;
+                }
+                return str;
+            };
         }
 
         //Zadanie 5
         //zwroć w metodzie lambdę, która wyświetla na konsoli przekazany łańcuch wielkimi literami
         public static Action<string> StringConsumer()
         {
-            //usuń zgłoszenie wyjątku i wpisz rozwiązanie
-            throw new NotImplementedException();
+            return (string s) => Console.WriteLine(s.ToUpper());
         }
         //Zadanie 6
         //zwroć w metodzie lambdę, która zwraca argument podniesiony do kwadratu
         public static Func<double, double> DoubleFunction()
         {
-            //usuń zgłoszenie wyjątku i wpisz rozwiązanie
-            throw new NotImplementedException();
+            return (double a) => a * a;
         }
         //Zadanie 7
         //zwróć w metodzie lambdę, która zwraca prawdę, jeśli argument jest poprawnym numerem telefonu:
@@ -232,8 +240,14 @@ namespace laby2
         //- każdy znak jest cyfrą
         public static Predicate<string> IsPhoneNumber()
         {
-            //usuń zgłoszenie wyjątku i wpisz rozwiązanie
-            throw new NotImplementedException();
+            return (string a) =>
+            {
+                if (a.Length == 9 && a.All(char.IsDigit))
+                {
+                    return true;
+                }
+                return false;
+            };
         }
         public static List<Person> LoadPeople(List<String> RawData, Predicate<string> validator)
         {
@@ -259,7 +273,14 @@ namespace laby2
         //jeśli obie części zawierają poprawne dane to predykat zwarac true
         public static List<Person> ProcessPeople(List<String> data)
         {
-            return LoadPeople(data, null);
+            return LoadPeople(data, (string s) =>
+            {
+                string[] inputs = s.Split(' ');
+
+                Boolean isNumberTrue = IsPhoneNumber().Invoke(inputs[0]);
+                Boolean isEctsNotNegative = int.Parse(inputs[1]) >= 0;
+                return isNumberTrue && isEctsNotNegative;
+            });
         }
 
         //Zadanie 9
@@ -268,6 +289,8 @@ namespace laby2
         {
             string receivedMessage = null;
             //poniżej wpisz lambdę, która jest subskrybentem obiektu messanger
+            // EventHandler<string> handler = (string s) => receivedMessage = s;
+            messenger.BrodcastMessage += (object sender, string s) => receivedMessage = s;
             messenger.SendToAll(message);
             return receivedMessage;
         }

@@ -4,20 +4,26 @@ using System.Collections.Generic;
 
 class App
 {
-  public static void Main(string[] args)
-  {
-    Exercise1<string> team = new Exercise1<string>() { Manager = "Adam", MemberA = "Ola", MemberB = "Ewa" };
-    foreach (var member in team)
+    public static void Main(string[] args)
     {
-      Console.WriteLine(member);
+        Exercise1<string> team = new Exercise1<string>() { Manager = "Adam", MemberA = "Ola", MemberB = "Ewa" };
+        foreach (var member in team)
+        {
+            Console.WriteLine(member);
+        }
+
+
+        CurrencyRates rates = new CurrencyRates();
+        rates[Currency.EUR] = 4.6m;
+        Console.WriteLine(rates[Currency.EUR]);
+
+
+        //Cw4
+        Exercise4 board = new Exercise4();
+        board["A5"] = (ChessPiece.King, ChessColor.White);
+        Console.WriteLine(board["A8"]); // pole bez figury w kolorze białym (ChessPiece.Empty, ChessColor.White)
+        Console.WriteLine(board["A1"]); // pole bez figury w kolorze czarnym (ChessPiece.Empty, ChessColor.Black)
     }
-
-
-    CurrencyRates rates = new CurrencyRates();
-    rates[Currency.EUR] = 4.6m;
-    Console.WriteLine(rates[Currency.EUR]);
-
-  }
 }
 //Cwiczenie 1 (2 punkty)
 //Zmodyfikuj klasę Exercise1 aby implementowała interfesj IEnumerable<T>
@@ -33,20 +39,20 @@ class App
 //Ewa
 public class Exercise1<T> : IEnumerable<T>
 {
-  public T Manager { get; init; }
-  public T MemberA { get; init; }
-  public T MemberB { get; init; }
+    public T Manager { get; init; }
+    public T MemberA { get; init; }
+    public T MemberB { get; init; }
 
-  public IEnumerator<T> GetEnumerator()
-  {
-    yield return Manager;
-    yield return MemberA;
-    yield return MemberB;
-  }
-  IEnumerator IEnumerable.GetEnumerator()
-  {
-    return GetEnumerator();
-  }
+    public IEnumerator<T> GetEnumerator()
+    {
+        yield return Manager;
+        yield return MemberA;
+        yield return MemberB;
+    }
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
 
 }
 //Cwiczenie 2 (2 punkty)
@@ -60,27 +66,27 @@ public class Exercise1<T> : IEnumerable<T>
 
 enum Currency
 {
-  PLN,
-  USD,
-  EUR,
-  CHF
+    PLN,
+    USD,
+    EUR,
+    CHF
 }
 
 class CurrencyRates
 {
-  public decimal this[Currency cur]
-  {
-    get
+    public decimal this[Currency cur]
     {
-      return _rates[Convert.ToInt32(cur)];
+        get
+        {
+            return _rates[Convert.ToInt32(cur)];
+        }
+        set
+        {
+            _rates[Convert.ToInt32(cur)] = value;
+        }
     }
-    set
-    {
-      _rates[Convert.ToInt32(cur)] = value;
-    }
-  }
-  //utwórz tablicę o rozmiarze równym liczbie stalych wyliczeniowych Currency
-  private decimal[] _rates = new decimal[Enum.GetValues<Currency>().Length];
+    //utwórz tablicę o rozmiarze równym liczbie stalych wyliczeniowych Currency
+    private decimal[] _rates = new decimal[Enum.GetValues<Currency>().Length];
 }
 
 //Cwiczenie 3
@@ -106,37 +112,37 @@ class CurrencyRates
 
 class Exercise3 : IEnumerable<string>
 {
-  public IEnumerator<string> GetEnumerator()
-  {
-    throw new NotImplementedException();
-  }
+    public IEnumerator<string> GetEnumerator()
+    {
+        throw new NotImplementedException();
+    }
 
-  IEnumerator IEnumerable.GetEnumerator()
-  {
-    return GetEnumerator();
-  }
-  public IEnumerator<string> GetLimitedHex(int digitCount)
-  {
-    throw new NotImplementedException();
-  }
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
+    public IEnumerator<string> GetLimitedHex(int digitCount)
+    {
+        throw new NotImplementedException();
+    }
 }
 
 
 enum ChessPiece
 {
-  Empty,
-  King,
-  Queen,
-  Rook,
-  Bishop,
-  Knight,
-  Pawn
+    Empty,
+    King,
+    Queen,
+    Rook,
+    Bishop,
+    Knight,
+    Pawn
 }
 
 enum ChessColor
 {
-  Black,
-  White
+    Black,
+    White
 }
 
 //Cwiczenie 4 (4 punkty)
@@ -152,9 +158,51 @@ enum ChessColor
 //1 królowa i król, 2 wieże, gońce, skoczki, 8 pionów
 //W sytuacji, gdy zostanie dodana nadmiarowa figura np. 3 skoczek w kolorze białym, klasa powinna zgłosić wyjątek InvalidChessPieceCount
 //W sytuacji podania niepoprawnych współrzednych np. K9 lub AA44, klasa powinna zgłosić wyjątek InvalidChessBoardCoordinates 
+enum Columns
+{
+    A = 0,
+    B = 1,
+    C = 2,
+    D = 3,
+    E = 4,
+    F = 5,
+    G = 6,
+    H = 7
+}
 class Exercise4
 {
-  private (ChessPiece, ChessColor)[,] _board = new (ChessPiece, ChessColor)[8, 8];
+    private (ChessPiece, ChessColor)[,] _board = new (ChessPiece, ChessColor)[8, 8];
+
+    public (ChessPiece, ChessColor) this[string node]
+    {
+        get
+        {
+            Console.WriteLine(node[0]);
+            Console.WriteLine(node[1]);
+
+            if (node.Length > 2
+            || (int)node[1] > 8
+            || (int)node[1] < 0)
+            {
+                throw new InvalidChessBoardCoordinates();
+            }
+            return _board[node[0], node[1]];
+
+        }
+        set
+        {
+            Console.WriteLine(node[0]);
+            Console.WriteLine(node[1]);
+            if (node.Length > 2
+            || (int)node[1] > 8
+            || (int)node[1] < 0)
+            {
+                throw new InvalidChessBoardCoordinates();
+            }
+            _board[node[0], node[1]] = value;
+
+        }
+    }
 }
 
 class InvalidChessPieceCount : Exception
