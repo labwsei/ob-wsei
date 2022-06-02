@@ -29,8 +29,7 @@ class App
         //tuple.isSame          ==> false
         int[] arr = { 2, 3, 4, 6 };
         var tuple = Exercise2.GetTuple2<int>(arr);
-        Console.WriteLine(tuple.firstAndLast[0]);
-        Console.WriteLine(tuple.firstAndLast[1]);
+        Console.WriteLine("{" + tuple.firstAndLast[0] + ", " + tuple.firstAndLast[1] + "} ");
         Console.WriteLine(tuple.isSame);
 
         string[] arrg = { "adam", "ola", "adam", "ewa", "karol", "ala", "adam", "ola" };
