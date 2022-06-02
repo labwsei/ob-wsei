@@ -8,7 +8,7 @@ class App
     public static void Main(string[] args)
     {
         //UWAGA!!! Nie usuwaj poniższego wiersza!!! :D
-        //Console.WriteLine("Otrzymałeś punktów: " + (Test.Exercises_1() + Test.Excersise_2() + Test.Excersise_3()));
+        // Console.WriteLine("Otrzymałeś punktów: " + (Test.Exercises_1() + Test.Excersise_2() + Test.Excersise_3()));
 
 
         //Cw1
@@ -21,10 +21,21 @@ class App
         Console.WriteLine(new Musician<Keyboard>().ToString());
 
 
+        //Cw2
+        //int[] arr = {2, 3, 4, 6}
+        //metoda powinna zwrócić krotkę
+        //var tuple = GetTuple2<int>(arr);
+        //tuple.firstAndLast    ==> {2, 6}
+        //tuple.isSame          ==> false
         int[] arr = { 2, 3, 4, 6 };
         var tuple = Exercise2.GetTuple2<int>(arr);
-        Console.WriteLine(tuple.Item1);
-        Console.WriteLine(tuple.Item2);
+        Console.WriteLine(tuple.firstAndLast[0]);
+        Console.WriteLine(tuple.firstAndLast[1]);
+        Console.WriteLine(tuple.isSame);
+
+        string[] arrg = { "adam", "ola", "adam", "ewa", "karol", "ala", "adam", "ola" };
+        var x = Exercise3.countElements(arrg, "adam", "ewa", "ola");
+        Console.WriteLine(x[0]);
     }
 }
 
@@ -94,7 +105,7 @@ public class Exercise2
     //Zmień poniższą metodę, aby zwracała krotkę z polami typu string, int i bool oraz wartościami "Karol", 12 i true
     public static object getTuple1()
     {
-        return ValueTuple.Create("Karol", 12, true);
+        return new Tuple<string, int, bool>("Karol", 12, true);
     }
 
     //Zdefiniuj poniższą ???? metodę, aby zwracała krotkę o dwóch polach
@@ -108,13 +119,24 @@ public class Exercise2
     //var tuple = GetTuple2<int>(arr);
     //tuple.firstAndLast    ==> {2, 6}
     //tuple.isSame          ==> false
-    public static ValueTuple<T[], bool> GetTuple2<T>(T[] input)
+    public static (T[] firstAndLast, bool isSame) GetTuple2<T>(T[] input)
     {
-        T[] firstAndLast = new T[2];
-        firstAndLast[0] = input[0];
-        firstAndLast[1] = input[^1];
+        T[] firstAndLast;
+        if (input.Length == 0)
+        {
+            firstAndLast = new T[0];
+        }
+        else
+        {
+            firstAndLast = new T[2];
+            firstAndLast[0] = input[0];
+            firstAndLast[1] = input[^1];
+        }
+
         var isSame = firstAndLast[0].Equals(firstAndLast[1]);
-        return (firstAndLast, isSame);
+
+        (T[] firstAndLast, bool isSame) tp = (firstAndLast, isSame);
+        return tp;
     }
 }
 
@@ -133,10 +155,35 @@ public class Exercise3
     //W obu tablicach moga pojawić się wartości null, które też muszą być zliczane
     public static (T, int)[] countElements<T>(T[] arr, params T[] elements)
     {
-        var arraum = new (T, int)[elements.Length];
-        for (int i = 0; i < arr.Length; i++)
-        {
 
+        var map = new Dictionary<T, int>();
+
+        foreach (var name in arr)
+        {
+            if (map.ContainsKey(name))
+            {
+                map[name] += 1;
+            }
+            else
+            {
+                map[name] = 1;
+            }
+        }
+        var arraum = new (T, int)[elements.Length];
+        var counter = 0;
+        foreach (var ele in elements)
+        {
+            int v;
+            if (map.ContainsKey(ele))
+            {
+                v = map[ele];
+            }
+            else
+            {
+                v = 0;
+            }
+            arraum[counter] = (ele, v);
+            counter++;
         }
         return arraum;
     }
